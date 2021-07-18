@@ -18,6 +18,7 @@ import blogSite.*;
 //here we will add the basic features and look of the menu bar
 
 public class menubar extends JPanel implements ActionListener {
+//	emne declare korsi, jate ei class er jekono method theke egula access kora jay
 	JPanel accountBtns;
 	JButton sgnInBtn;
 	JButton sgnUpBtn;
@@ -37,7 +38,8 @@ public class menubar extends JPanel implements ActionListener {
 		sgnUpBtn = new BTN("Sign up");
 		profileBtn = new BTN("Profile");
 		sgnOutBtn = new BTN("Sign out");
-		loadAccountBtns(accountBtns);
+		loadAccountBtns();
+//		accountBtns.setBackground(Color.red);
 		//adding the whole panel to the menu panel, to the east (right)
 		this.add(accountBtns,BorderLayout.EAST);
 		
@@ -67,6 +69,7 @@ public class menubar extends JPanel implements ActionListener {
 		srchBtn.addActionListener(this);
 	}
 	
+	//dynamic method dispatch is applied here
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==homeBtn) {
@@ -89,30 +92,34 @@ public class menubar extends JPanel implements ActionListener {
 		}
 	}
 	
+	//home button e click korle ei method call hobe
 	private void loadHomePage() {
 		// getting the current active window
 		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
 		activeWindow.setVisible(false);
 		new HOMEPAGE().setVisible(true);
 	}
-
+	
+	//search button e click korle ei method call hobe
 	private void doSearch() {
 		//to be implemented later
 	}
 	
+	//when clicked the sign in button
 	private void loadSignInPage() {
 		// getting the current active window
 		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
 		activeWindow.setVisible(false);
 		new LOGINPAGE().setVisible(true);
+//		sysInfo.logged = true;
 	}
 	
-	
+//	when clicked the sign up button
 	private void loadSignUpPage() {
-		// getting the current active window
-		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
-		activeWindow.setVisible(false);
-		new LOGINPAGE().setVisible(true);
+//		// getting the current active window
+//		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
+//		activeWindow.setVisible(false);
+//		new LOGINPAGE().setVisible(true);
 	}
 	
 	
@@ -126,10 +133,12 @@ public class menubar extends JPanel implements ActionListener {
 	
 	public void doSignOut() {
 		//to be implemented later
+		sysInfo.logged= false;
+		loadAccountBtns();
 	}
 	
 	//this checks which account buttons should be displayed according to the logged state
-	public  void loadAccountBtns(JPanel pan) {
+	public  void loadAccountBtns() {
 		if(sysInfo.logged) {
 			accountBtns.remove(sgnInBtn);
 			accountBtns.remove(sgnUpBtn);
@@ -137,10 +146,10 @@ public class menubar extends JPanel implements ActionListener {
 			accountBtns.add(sgnOutBtn);
 		}
 		else {
-			accountBtns.add(sgnInBtn);
-			accountBtns.add(sgnUpBtn);
 			accountBtns.remove(profileBtn);
 			accountBtns.remove(sgnOutBtn);
+			accountBtns.add(sgnInBtn);
+			accountBtns.add(sgnUpBtn);
 		}
 	}
 	
