@@ -103,6 +103,9 @@ public class menubar extends JPanel implements ActionListener {
 	//search button e click korle ei method call hobe
 	private void doSearch() {
 		//to be implemented later
+		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
+		activeWindow.setVisible(false);
+		new SEARCHPAGE().setVisible(true);
 	}
 	
 	//when clicked the sign in button
