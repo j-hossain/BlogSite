@@ -22,7 +22,7 @@ public class previewpost extends JPanel {
 		JTextArea Preview;
 		JLabel Category;
 		JLabel Author;
-		this.setSize(new Dimension(620, 2000));
+		this.setSize(new Dimension(620, 630));
 		this.setBackground(new Color(230, 230, 230));
 //		ei panel gular kichu similar propertie thakbe, tai ekta clas banay,
 //		egulake oi class er object banay disi, jate eki line bar bar likhte na hoy

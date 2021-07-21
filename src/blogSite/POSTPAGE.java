@@ -16,11 +16,10 @@ public class POSTPAGE extends mainFrame {
 			setMenuBar();//this adds a menu bar to the page
 			conBody = new JPanel();
 			JPanel prevewBoxContainer = new JPanel(); //this will be added to the content body
-			prevewBoxContainer.setPreferredSize(new Dimension(620,2500));
-			prevewBoxContainer.setLayout(new GridLayout(4,1,10,10));
+			prevewBoxContainer.setPreferredSize(new Dimension(620,620));
+			prevewBoxContainer.setLayout(new GridLayout(1,1,10,10));
 			prevewBoxContainer.add(new previewpost());
 			conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam
-			conBody.add(new pageGroup());
 			setMainBody();
 	}
 
