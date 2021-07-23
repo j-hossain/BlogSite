@@ -24,8 +24,16 @@ public class previewBox extends JPanel implements ActionListener {
 	public JTextArea postPreview;
 	public JLabel postCategory;
 	public JLabel postAuthor;
-	JButton postbtn;
-	public String id;
+	public JButton postbtn;
+	
+	//data from database
+	public int pId;
+	public String pTitle="The Title";
+	public String pDate="What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the";
+	public String pAuthor="Author Name";
+	public String pText="5:00 pm 14 July, 2020";
+	public String pCategory="Category";
+	
 	public previewBox() {
 		
 		//as the side panels are given 216 width each, then what left is 648 from 1080, so 620 is for the box and rest is the padding
@@ -46,11 +54,10 @@ public class previewBox extends JPanel implements ActionListener {
 		postbtn.addActionListener(this);
 		//egula demo text , database connect korle tokhon database theke text nie boshabe
 		postTitle = new JLabel();
-		postTitle.setText("The Title");
-		postPreview = new JTextArea("What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the");
-		postAuthor = new JLabel("Author Name");
-		postCategory = new JLabel("Category");//ekta post k ekta category tei deoa jabe
-		postDate = new JLabel("5:00 pm 14 July, 2020");
+		postPreview = new JTextArea();
+		postAuthor = new JLabel();
+		postCategory = new JLabel();//ekta post k ekta category tei deoa jabe
+		postDate = new JLabel();
 		
 		//giving the post preview texts a bit of shape
 		postPreview.setLineWrap(true);

@@ -3,6 +3,7 @@ import components.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.ResultSet;
 
 public class HOMEPAGE extends mainFrame {
 	public HOMEPAGE() {
@@ -15,15 +16,44 @@ public class HOMEPAGE extends mainFrame {
 		prevewBoxContainer.setLayout(new GridLayout(4,1,10,10)); //seting the grid layout so that all the preview boxes align them self up in a single column, with equal gaps between them automatically
 		// egula test er jonno boshano, actulally, database theke shob gula post nibe,
 		// then oi list onujai, popst gulake assign korte hobe
-		prevewBoxContainer.add(new previewBox());
-		prevewBoxContainer.add(new previewBox());
-		prevewBoxContainer.add(new previewBox());
-		prevewBoxContainer.add(new previewBox());
+//		prevewBoxContainer.add(new previewBox());
+//		prevewBoxContainer.add(new previewBox());
+//		prevewBoxContainer.add(new previewBox());
+//		prevewBoxContainer.add(new previewBox());
 		
+//		creating an array of 4 preview boxes
+		int postCount = sysInfo.dt.getCount("posts");
+		previewBox[] pBoxes = new previewBox[postCount];
+		pBoxes = setPosts(pBoxes);
 		
 		conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam
 		conBody.add(new pageGroup());//ei part die page control hobe
 //		conBody.setBackground(Color.green);
 		setMainBody();//ebar main body ta set kore dibe, jekhane side panel ache, content body ache
 	}
+	
+	public  previewBox[] setPosts(previewBox[] pbBoxs) {
+		ResultSet rSet;
+		int cnt=0;
+		try {
+			rSet = sysInfo.dt.getData("select post_id,title,full_name,post_log.time,post,category from posts, post_log, user_table WHERE posts.id = post_log.post_id and user_table.id=post_log.user_id");
+			while(rSet.next()) {
+				pbBoxs[cnt] = new previewBox();
+				pbBoxs[cnt].pId = rSet.getInt("post_id");
+				pbBoxs[cnt].pTitle = rSet.getString("title");
+				pbBoxs[cnt].pDate = rSet.getString("time");
+				pbBoxs[cnt].pAuthor = rSet.getString("full_name");
+				pbBoxs[cnt].pText = rSet.getString("post");
+				pbBoxs[cnt].pCategory = rSet.getString("category");
+			}	
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return pbBoxs;
+	}
 }
+
+

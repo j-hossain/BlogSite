@@ -1,6 +1,8 @@
 package components;
 import java.sql.*;
 
+import blogSite.sysInfo;
+
 
 //auto increment jei feild deoa okhane null pathailei auto increment hoye jabe
 
@@ -37,7 +39,24 @@ public class dataCon {
 		}
 		return rSet;
 	}
+	
+	public int getCount(String table) {
+		
+		//this method is used to get the total row count of any table
+		int size=0;
+		try {
+			ResultSet rs = sysInfo.dt.getData("SELECT COUNT(*) FROM "+table);
+			rs.next();		
+			size = rs.getInt(1);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return size;
+	}
 }
+
 
 
 //how to get data
