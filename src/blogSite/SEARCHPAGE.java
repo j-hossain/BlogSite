@@ -19,7 +19,6 @@ public class SEARCHPAGE extends mainFrame {
 		prevewBoxContainer.add(new previewBox());
 		prevewBoxContainer.add(new previewBox());
 		conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam
-		conBody.add(new pageGroup());
 		setMainBody();
 	}
 

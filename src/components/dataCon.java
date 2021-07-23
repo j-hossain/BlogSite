@@ -15,9 +15,9 @@ public class dataCon {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		String url = "jdbc:mysql://localhost:3306/blog_database";
-		String user = "root";
-		String password = "";
+		String url = "jdbc:mysql://sql6.freesqldatabase.com:3306/sql6427252";
+		String user = "sql6427252";
+		String password = "F3HJndxqd7";
 		try {
         	dtbs = DriverManager.getConnection(url, user, password);
         }

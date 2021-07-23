@@ -28,11 +28,10 @@ public class HOMEPAGE extends mainFrame {
 		postCount = sysInfo.dt.getCount("posts");
 		pBoxes = new previewBox[postCount];
 		pBoxes = setPosts(pBoxes);//dtabase theke data nie set kore dibe
-		
-		loadPosts(0);
-		
+		PAGECONTROL pCon = new PAGECONTROL(postCount, prevewBoxContainer, pBoxes);
+		pCon.loadPosts(0);
 		conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam
-		conBody.add(new pageGroup());//ei part die page control hobe
+		conBody.add(pCon);//ei part die page control hobe
 //		conBody.setBackground(Color.green);
 		setMainBody();//ebar main body ta set kore dibe, jekhane side panel ache, content body ache
 	}
@@ -60,15 +59,6 @@ public class HOMEPAGE extends mainFrame {
 		}
 		
 		return pbBoxs;
-	}
-	
-	public void loadPosts(int page) {
-		int low = page*4;
-		int  high = postCount>=(low+4)?low+4:postCount;
-		prevewBoxContainer.removeAll();
-		for(int it=low;it<high;it++) {
-			prevewBoxContainer.add(pBoxes[it]);
-		}
 	}
 }
 
