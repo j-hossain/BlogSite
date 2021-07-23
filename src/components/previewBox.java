@@ -113,7 +113,7 @@ public class previewBox extends JPanel implements ActionListener {
 		this.top1Panel.removeAll();
 		this.remove(top1Panel);
 		this.add(top1Panel);
-		this.top1Panel.setLayout(new FlowLayout());
+		this.top1Panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		edtBtn = new BTN("Edit");
 		dltBtn = new BTN("Delete");
 		edtBtn.setMargin(new Insets(0,5,0,5));

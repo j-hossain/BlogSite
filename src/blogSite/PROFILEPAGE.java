@@ -1,17 +1,23 @@
 package blogSite;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import components.*;
 
-public class PROFILEPAGE extends mainFrame {
+public class PROFILEPAGE extends mainFrame implements ActionListener{
 	public int postCount;
 	public JPanel prevewBoxContainer;
 	public previewBox[] pBoxes;
+	public JButton newBtn;
 	public PROFILEPAGE(String author) {
 		setTitle(author);//setting the title
 		setMenuBar();//this adds a menu bar to the page
@@ -26,14 +32,36 @@ public class PROFILEPAGE extends mainFrame {
 		PAGECONTROL pCon = new PAGECONTROL(postCount, prevewBoxContainer, pBoxes);
 		pCon.loadPosts(1);
 		conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam
-		conBody.add(pCon);
+		//creating a bottom panel that will hold page controllers and a new post button
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setPreferredSize(new Dimension(620,30));
+		bottomPanel.setLayout(new BorderLayout());
+		newBtn = new BTN("New Post");
+		newBtn.addActionListener(this);
+		bottomPanel.add(newBtn,BorderLayout.WEST);
+		bottomPanel.add(pCon,BorderLayout.EAST);
+		conBody.add(bottomPanel);
 		setMainBody();
 	}
 	
 	public void setModifyBtns(previewBox[] pBoxs) {
 		for(int i=0;i<pBoxs.length;i++) {
 			pBoxs[i].setModBtns();
-			
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==newBtn) {
+			loadPostEditPage();
+		}
+	}
+	
+	public void loadPostEditPage() {
+		// getting the current active window
+		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
+		activeWindow.setVisible(false);
+		new POSTEDITPAGE().setVisible(true);
 	}
 }
