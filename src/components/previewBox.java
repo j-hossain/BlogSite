@@ -19,20 +19,15 @@ import blogSite.HOMEPAGE;
 import blogSite.POSTPAGE;
 
 public class previewBox extends JPanel implements ActionListener {
-	public JLabel postTitle;
-	public JLabel postDate;
+	public JLabel postTitle,postDate,postCategory,postAuthor;
 	public JTextArea postPreview;
-	public JLabel postCategory;
-	public JLabel postAuthor;
 	public JButton postbtn;
 	
 	//data from database
 	public int pId;
-	public String pTitle="The Title";
-	public String pDate="What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the";
-	public String pAuthor="Author Name";
-	public String pText="5:00 pm 14 July, 2020";
-	public String pCategory="Category";
+	public String pTitle,pDate,pAuthor,pText,pCategory;
+	
+	JPanel topPanel,top1Panel,midPanel,bottomPanel;
 	
 	public previewBox() {
 		
@@ -43,10 +38,11 @@ public class previewBox extends JPanel implements ActionListener {
 //		ei panel gular kichu similar propertie thakbe, tai ekta clas banay,
 //		egulake oi class er object banay disi, jate eki line bar bar likhte na hoy
 //		this is object oriented programming i guess :P
-		JPanel topPanel = new posPanel(27);
-		JPanel top1Panel = new posPanel(13);
-		JPanel midPanel = new posPanel(50);
-		JPanel bottomPanel = new posPanel(20);
+		topPanel = new posPanel(27);
+		top1Panel = new posPanel(13);
+		midPanel = new posPanel(50);
+		bottomPanel = new posPanel(20);
+		
 		postbtn = new BTN("View full post");
 		postbtn.setBackground(null);
 		postbtn.setBorder(null);
@@ -79,7 +75,7 @@ public class previewBox extends JPanel implements ActionListener {
 		topPanel.add(postDate,BorderLayout.EAST);
 		//top panel er dui dike duita die dilam
 		midPanel.add(postPreview);
-		top1Panel.add(postAuthor,BorderLayout.WEST);
+		top1Panel.add(postAuthor,BorderLayout.EAST);
 		bottomPanel.add(postCategory,BorderLayout.EAST);
 		bottomPanel.add(postbtn,BorderLayout.WEST);
 		//same as top panel
@@ -99,7 +95,7 @@ public class previewBox extends JPanel implements ActionListener {
 		// getting the current active window
 		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
 		activeWindow.setVisible(false);
-		new POSTPAGE().setVisible(true);
+		new POSTPAGE(pId).setVisible(true);
 	}
 	
 	public void loadPostData() {

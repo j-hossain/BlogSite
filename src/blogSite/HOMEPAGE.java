@@ -29,7 +29,7 @@ public class HOMEPAGE extends mainFrame {
 		pBoxes = new previewBox[postCount];
 		pBoxes = setPosts(pBoxes);//dtabase theke data nie set kore dibe
 		PAGECONTROL pCon = new PAGECONTROL(postCount, prevewBoxContainer, pBoxes);
-		pCon.loadPosts(0);
+		pCon.loadPosts(1);
 		conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam
 		conBody.add(pCon);//ei part die page control hobe
 //		conBody.setBackground(Color.green);
@@ -47,7 +47,7 @@ public class HOMEPAGE extends mainFrame {
 				pbBoxs[cnt].pTitle = rSet.getString("title");
 				pbBoxs[cnt].pDate = rSet.getString("time");
 				pbBoxs[cnt].pAuthor = rSet.getString("full_name");
-				pbBoxs[cnt].pText = rSet.getString("post");
+				pbBoxs[cnt].pText = getPreview(rSet.getString("post"));
 				pbBoxs[cnt].pCategory = rSet.getString("category");
 				pbBoxs[cnt].loadPostData();
 				cnt++;
@@ -59,6 +59,13 @@ public class HOMEPAGE extends mainFrame {
 		}
 		
 		return pbBoxs;
+	}
+	
+	public String getPreview(String Text) {
+		int mx = 150>Text.length()?Text.length():150;
+		Text = Text.substring(0,mx);
+		Text = Text.concat("  ......");
+		return Text;
 	}
 }
 

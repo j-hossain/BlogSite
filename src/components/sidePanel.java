@@ -12,7 +12,7 @@ public class sidePanel extends JPanel{
 		//setting its layout to null, so that i can set the elements myself
 		this.setLayout(null);
 		//size same thakbe left houk ba rigth
-		this.setBackground(Color.cyan);
+//		this.setBackground(Color.cyan);
 		this.setPreferredSize(new Dimension((int)sysInfo.winWidth/5, sysInfo.winHeight-50));
 		//in case jodi dui side er panel e dui type er jinish add kori, tokhon kar jonno emne condition die rakha
 		if(type=="left") {
