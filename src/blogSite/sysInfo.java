@@ -1,5 +1,7 @@
 package blogSite;
 
+import components.dataCon;
+
 public  class sysInfo {
 	//shob static kora hoise, jate object create na koreo ei data gula jekono class theke access kora jay
 	//etake amra local memory hishebe use korte parbo, for passing data between pages
@@ -11,4 +13,9 @@ public  class sysInfo {
 	//jate jekono class thekei log in information gula paoa jay
 	public static String userName;
 	public static String currentPostId;
+	public static dataCon dt = null;
+	
+	public static void setConnection() {
+		dt = new dataCon();
+	}
 }
