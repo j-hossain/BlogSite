@@ -24,10 +24,8 @@ public class HOMEPAGE extends mainFrame {
 //		prevewBoxContainer.add(new previewBox());
 //		prevewBoxContainer.add(new previewBox());
 		
-//		creating an array of 4 preview boxes
 		postCount = sysInfo.dt.getCount("posts");
-		pBoxes = new previewBox[postCount];
-		pBoxes = setPosts(pBoxes);//dtabase theke data nie set kore dibe
+		pBoxes = setPosts(postCount,"select post_id,title,full_name,post_log.time,post,category from posts, post_log, user_table WHERE posts.id = post_log.post_id and user_table.id=post_log.user_id");//dtabase theke data nie set kore dibe
 		PAGECONTROL pCon = new PAGECONTROL(postCount, prevewBoxContainer, pBoxes);
 		pCon.loadPosts(1);
 		conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam
@@ -36,37 +34,6 @@ public class HOMEPAGE extends mainFrame {
 		setMainBody();//ebar main body ta set kore dibe, jekhane side panel ache, content body ache
 	}
 	
-	public  previewBox[] setPosts(previewBox[] pbBoxs) {
-		ResultSet rSet;
-		int cnt=0;
-		try {
-			rSet = sysInfo.dt.getData("select post_id,title,full_name,post_log.time,post,category from posts, post_log, user_table WHERE posts.id = post_log.post_id and user_table.id=post_log.user_id");
-			while(rSet.next()) {
-				pbBoxs[cnt] = new previewBox();
-				pbBoxs[cnt].pId = rSet.getInt("post_id");
-				pbBoxs[cnt].pTitle = rSet.getString("title");
-				pbBoxs[cnt].pDate = rSet.getString("time");
-				pbBoxs[cnt].pAuthor = rSet.getString("full_name");
-				pbBoxs[cnt].pText = getPreview(rSet.getString("post"));
-				pbBoxs[cnt].pCategory = rSet.getString("category");
-				pbBoxs[cnt].loadPostData();
-				cnt++;
-			}	
-		}
-		catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		
-		return pbBoxs;
-	}
-	
-	public String getPreview(String Text) {
-		int mx = 150>Text.length()?Text.length():150;
-		Text = Text.substring(0,mx);
-		Text = Text.concat("  ......");
-		return Text;
-	}
 }
 
 
