@@ -101,6 +101,14 @@ public class previewBox extends JPanel implements ActionListener {
 		activeWindow.setVisible(false);
 		new POSTPAGE().setVisible(true);
 	}
+	
+	public void loadPostData() {
+		postTitle.setText(pTitle);
+		postDate.setText(pDate);
+		postAuthor.setText(pAuthor);
+		postPreview.setText(pText);
+		postCategory.setText(pCategory);
+	}
 }
 
 class posPanel extends JPanel{

@@ -63,10 +63,11 @@ public class menubar extends JPanel implements ActionListener {
 		
 		//now making the buttons works
 		homeBtn.addActionListener(this);
+		srchBtn.addActionListener(this);
 		sgnInBtn.addActionListener(this);
-		srchBtn.addActionListener(this);
 		sgnUpBtn.addActionListener(this);
-		srchBtn.addActionListener(this);
+		profileBtn.addActionListener(this);
+		sgnOutBtn.addActionListener(this);
 	}
 	
 	//dynamic method dispatch is applied here
@@ -143,17 +144,19 @@ public class menubar extends JPanel implements ActionListener {
 	//this checks which account buttons should be displayed according to the logged state
 	public  void loadAccountBtns() {
 		if(sysInfo.logged) {
-			accountBtns.remove(sgnInBtn);
-			accountBtns.remove(sgnUpBtn);
+			accountBtns.removeAll();
 			accountBtns.add(profileBtn);
 			accountBtns.add(sgnOutBtn);
 		}
 		else {
-			accountBtns.remove(profileBtn);
-			accountBtns.remove(sgnOutBtn);
+			accountBtns.removeAll();
 			accountBtns.add(sgnInBtn);
 			accountBtns.add(sgnUpBtn);
 		}
+		//ei duita na dile auto refresh hoy na
+		//ei duita comment korlei bujha jay kan dite hobe ei line
+		accountBtns.setVisible(false);
+		accountBtns.setVisible(true);
 	}
 	
 }
