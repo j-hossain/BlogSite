@@ -44,6 +44,9 @@ public class PAGECONTROL extends JPanel implements ActionListener{
 		pgNum.setHorizontalAlignment(SwingConstants.CENTER);
 		pgNum.setFont(new Font("",Font.PLAIN,20));
 		
+		//adding action listener
+		nxtBtn.addActionListener(this);
+		prvBtn.addActionListener(this);
 		
 		add(nxtBtn, BorderLayout.EAST);
 		add(prvBtn, BorderLayout.WEST);
@@ -93,7 +96,12 @@ public class PAGECONTROL extends JPanel implements ActionListener{
 		for(int it=low;it<high;it++) {
 			prevewBoxContainer.add(pBoxes[it]);
 		}
+		pgNum.setText(Integer.toString(pgCnt));
+		
+		//refreshing all
 		prevewBoxContainer.setVisible(false);
 		prevewBoxContainer.setVisible(true);
+		this.setVisible(false);
+		this.setVisible(true);
 	}
 }
