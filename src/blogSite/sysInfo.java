@@ -8,12 +8,11 @@ public  class sysInfo {
 	public static int winWidth = 1080; 
 	public static int winHeight = 720; 
 	public static boolean logged = true;
+	public static String userName="jahin";
+	public static dataCon dt = null;
 	//jokhon sign in korbe tokhon eta true kore dite hobe
 	//r j login korbe tar username ta rekhe dite hobe
 	//jate jekono class thekei log in information gula paoa jay
-	public static String userName;
-	public static String currentPostId;
-	public static dataCon dt = null;
 	
 	public static void setConnection() {
 		dt = new dataCon();

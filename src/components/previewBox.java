@@ -3,8 +3,10 @@ package components;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,13 +23,13 @@ import blogSite.POSTPAGE;
 public class previewBox extends JPanel implements ActionListener {
 	public JLabel postTitle,postDate,postCategory,postAuthor;
 	public JTextArea postPreview;
-	public JButton postbtn;
+	public JButton postbtn,edtBtn,dltBtn;
 	
 	//data from database
 	public int pId;
 	public String pTitle,pDate,pAuthor,pText,pCategory;
 	
-	JPanel topPanel,top1Panel,midPanel,bottomPanel;
+	public JPanel topPanel,top1Panel,midPanel,bottomPanel;
 	
 	public previewBox() {
 		
@@ -39,7 +41,7 @@ public class previewBox extends JPanel implements ActionListener {
 //		egulake oi class er object banay disi, jate eki line bar bar likhte na hoy
 //		this is object oriented programming i guess :P
 		topPanel = new posPanel(27);
-		top1Panel = new posPanel(13);
+		top1Panel = new posPanel(20);
 		midPanel = new posPanel(50);
 		bottomPanel = new posPanel(20);
 		
@@ -104,6 +106,22 @@ public class previewBox extends JPanel implements ActionListener {
 		postAuthor.setText(pAuthor);
 		postPreview.setText(pText);
 		postCategory.setText(pCategory);
+	}
+	
+	//this is for profile page only
+	public void setModBtns() {
+		this.top1Panel.removeAll();
+		this.remove(top1Panel);
+		this.add(top1Panel);
+		this.top1Panel.setLayout(new FlowLayout());
+		edtBtn = new BTN("Edit");
+		dltBtn = new BTN("Delete");
+		edtBtn.setMargin(new Insets(0,5,0,5));
+		dltBtn.setMargin(new Insets(0,5,0,5));
+		top1Panel.add(edtBtn);
+		top1Panel.add(dltBtn);
+		this.top1Panel.setPreferredSize(new Dimension(600,30));
+		this.midPanel.setPreferredSize(new Dimension(600,40));
 	}
 }
 

@@ -134,7 +134,7 @@ public class menubar extends JPanel implements ActionListener {
 		// getting the current active window
 		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
 		activeWindow.setVisible(false);
-		new LOGINPAGE().setVisible(true);
+		new PROFILEPAGE(sysInfo.userName).setVisible(true);
 	}
 	
 	

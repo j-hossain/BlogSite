@@ -59,12 +59,7 @@ public class mainFrame extends JFrame{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
-		previewBox[] ret = new previewBox[cnt];
-		for(int i=0;i<cnt;i++) {
-			ret[i] = pbBoxs[i];
-		}
-		return ret;
+		return pbBoxs;
 	}
 
 	public String getPreview(String Text) {
