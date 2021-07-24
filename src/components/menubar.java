@@ -124,9 +124,9 @@ public class menubar extends JPanel implements ActionListener {
 //	when clicked the sign up button
 	private void loadSignUpPage() {
 //		// getting the current active window
-//		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
-//		activeWindow.setVisible(false);
-//		new LOGINPAGE().setVisible(true);
+		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
+		activeWindow.setVisible(false);
+		new SIGNUPPAGE().setVisible(true);
 	}
 	
 	
