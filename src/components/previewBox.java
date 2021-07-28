@@ -21,6 +21,8 @@ import blogSite.CREATEPOST;
 import blogSite.HOMEPAGE;
 import blogSite.POSTEDITPAGE;
 import blogSite.POSTPAGE;
+import blogSite.PROFILEPAGE;
+import blogSite.sysInfo;
 
 public class previewBox extends JPanel implements ActionListener {
 	public JLabel postTitle,postDate,postCategory,postAuthor;
@@ -124,7 +126,17 @@ public class previewBox extends JPanel implements ActionListener {
 	}
 	
 	public void deletePost() {
-		
+		try {
+			sysInfo.dt.sendData("Delete from posts where id ="+pId);
+			sysInfo.dt.sendData("Delete from post_log where post_id ="+pId);
+			Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
+			activeWindow.setVisible(false);
+			new PROFILEPAGE(sysInfo.userName).setVisible(true);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	}
 	
 	//this is for profile page only
