@@ -139,9 +139,12 @@ public class menubar extends JPanel implements ActionListener {
 	
 	
 	public void doSignOut() {
-		//to be implemented later
+		// getting the current active window
+		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
+		activeWindow.setVisible(false);
 		sysInfo.logged= false;
 		loadAccountBtns();
+		new HOMEPAGE().setVisible(true);
 	}
 	
 	//this checks which account buttons should be displayed according to the logged state

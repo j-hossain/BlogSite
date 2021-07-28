@@ -45,7 +45,7 @@ public class dataCon {
 		//this method is used to get the total row count of any table
 		int size=0;
 		try {
-			ResultSet rs = sysInfo.dt.getData("SELECT COUNT(*) FROM "+table);
+			ResultSet rs = getData("SELECT COUNT(*) FROM "+table);
 			rs.next();		
 			size = rs.getInt(1);
 		}
@@ -54,6 +54,18 @@ public class dataCon {
 			e.printStackTrace();
 		}
 		return size;
+	}
+	public boolean sendData(String cmd) {
+		try {
+			Statement stt = dtbs.createStatement();
+			stt.executeUpdate(cmd);	
+			return true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
 
