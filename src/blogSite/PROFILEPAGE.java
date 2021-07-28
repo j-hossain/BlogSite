@@ -17,7 +17,7 @@ public class PROFILEPAGE extends mainFrame implements ActionListener{
 	public int postCount;
 	public JPanel prevewBoxContainer;
 	public previewBox[] pBoxes;
-	public JButton newBtn;
+	public JButton newBtn,btn;
 	public PROFILEPAGE(String author) {
 		setTitle(author);//setting the title
 		setMenuBar();//this adds a menu bar to the page
@@ -38,8 +38,11 @@ public class PROFILEPAGE extends mainFrame implements ActionListener{
 		bottomPanel.setLayout(new BorderLayout());
 		newBtn = new BTN("New Post");
 		newBtn.addActionListener(this);
+		btn = new BTN("EDIT Post");
+		btn.addActionListener(this);
 		bottomPanel.add(newBtn,BorderLayout.WEST);
 		bottomPanel.add(pCon,BorderLayout.EAST);
+		bottomPanel.add(btn,BorderLayout.CENTER);
 		conBody.add(bottomPanel);
 		setMainBody();
 	}
@@ -53,8 +56,11 @@ public class PROFILEPAGE extends mainFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==newBtn) {
+		if(e.getSource()==btn) {
 			loadPostEditPage();
+		}
+		if(e.getSource()==newBtn) {
+			loadPostcrtPage();
 		}
 	}
 	
@@ -63,5 +69,11 @@ public class PROFILEPAGE extends mainFrame implements ActionListener{
 		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
 		activeWindow.setVisible(false);
 		new POSTEDITPAGE().setVisible(true);
+	}
+	public void loadPostcrtPage() {
+		// getting the current active window
+		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
+		activeWindow.setVisible(false);
+		new CREATEPOST().setVisible(true);
 	}
 }

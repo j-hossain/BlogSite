@@ -1,35 +1,25 @@
 package blogSite;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-import components.BTN;
-import components.mainFrame;
-import components.postBox;
+import components.*;
 
-public class POSTEDITPAGE extends mainFrame implements ActionListener {
+public class CREATEPOST extends mainFrame implements ActionListener   {
 	JPanel catPanel,pstPanel,ttlpanel; 
-	JButton edit,dlt;
+	JButton pst;
 	JLabel catgry,post,ttle;  
 	JTextField cattxt,ttl;
 	JTextArea posttxt;
-	public String pTitle,pid;
-	public POSTEDITPAGE() {
-		// TODO Auto-generated constructor stub
-		setTitle("Edit Your Post");
+	public CREATEPOST() {
+		this.setTitle("CREATEPOST page");
 		setMenuBar();
-		
 		conBody = new JPanel();
 		JPanel createpost = new JPanel(); 
 		createpost.setPreferredSize(new Dimension(620,590));
@@ -47,7 +37,7 @@ public class POSTEDITPAGE extends mainFrame implements ActionListener {
 		ttle.setBackground(null);
 		ttle.setFont(new Font("",Font.PLAIN, 14));
 		ttl=new JTextField(40);
-		post=new JLabel("Modify Your Post");  
+		post=new JLabel("What's on your mind?");  
 		post.setBackground(null);
 		post.setFont(new Font("",Font.PLAIN, 14));
 		posttxt=new JTextArea(); 
@@ -61,25 +51,49 @@ public class POSTEDITPAGE extends mainFrame implements ActionListener {
 		ttlpanel.add(ttl,BorderLayout.EAST);
 		pstPanel.add(post,BorderLayout.NORTH);
 		pstPanel.add(posttxt,BorderLayout.CENTER);
+		pst=new BTN("POST"); 
+	    pst.setMaximumSize(new Dimension(100,50));
+	    pst.addActionListener(this);
 		createpost.add(catPanel);
 		createpost.add(ttlpanel);
 		createpost.add(pstPanel);
-		edit=new BTN("EDIT"); 
-	    edit.setMaximumSize(new Dimension(100,50));
-	    dlt=new BTN("DELETE"); 
-	    dlt.setMaximumSize(new Dimension(100,50));
-		createpost.add(edit);
-		createpost.add(dlt);
+		createpost.add(pst);
 		conBody.add(createpost);
-		
 		setMainBody();
 	}
-	public void loadData(postBox post) {
-		
-	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource()==pst) {
+			String title,post,category;
+			title= ttl.getText();
+			post = posttxt.getText();
+			category = cattxt.getText();
+			//if(sysInfo.dt.getCount("SELECT * FROM post_log,posts,user_table WHERE posts.id = post_log.post_id AND user_table.id=post_log.user_id")) {
+					if(createpost(title,post,category)) {
+						this.setVisible(false);
+						sysInfo.logged=true;
+						new HOMEPAGE().setVisible(true);
+					}
+					
+			//}
+				
+			}
+			
 		
 	}
+	
+	public boolean createpost(String title, String post, String category) {
+		return sysInfo.dt.sendData("INSERT INTO posts VALUES(null,'"+title+"','"+post+"','"+category+"')");
+	}
+
+}
+class postnPanel extends JPanel{
+	public postnPanel(int height) {
+		setLayout(new BorderLayout());
+		setBackground(null);
+		setPreferredSize(new Dimension(600,height));
+	}
+	
 }
