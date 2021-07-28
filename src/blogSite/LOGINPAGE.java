@@ -1,6 +1,5 @@
 package blogSite;
 import javax.swing.*;
-
 import components.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -17,29 +16,35 @@ public class LOGINPAGE extends mainFrame {
 //		ekta panel create korbo, suppose login box
 //		login box er bhitore thake duita text box, r ekta log in button
 		JPanel loginBox = new JPanel(); 
-		loginBox.setLayout(new GridLayout(4,1,10,10));
-		loginBox.setPreferredSize(new Dimension(300,200));
+		loginBox.setLayout(new GridLayout(7,1,10,10));
+		loginBox.setPreferredSize(new Dimension(300,300));
 		loginBox.setBackground(null); 
-		JPanel usrPanel= new JPanel();
-		JPanel passPanel= new JPanel();
+		JPanel usrPanel= new JPanel(new BorderLayout());
+		JPanel passPanel= new JPanel(new BorderLayout());
 		JLabel l1,l2;  
 		JTextField t1,t2; 
 	    l1=new JLabel("Username");  
 	    l2=new JLabel("Password");  
 	    t1=new JTextField(20);   
 	    t2=new JTextField(20);  
-	    usrPanel.add(l1);
-	    usrPanel.add(t1);
-	    passPanel.add(l2);
-	    passPanel.add(t2);
+	    usrPanel.add(l1,BorderLayout.WEST);
+	    usrPanel.add(t1,BorderLayout.EAST);
+	    passPanel.add(l2,BorderLayout.WEST);
+	    passPanel.add(t2,BorderLayout.EAST);
+	    JButton b1=new BTN("LOGIN"); 
+	    b1.setMaximumSize(new Dimension(100,50)); 
+	    //three dummy rows to bring it to the center, they are empty
+	    loginBox.add(new DIV(new BorderLayout()));
+	    loginBox.add(new DIV(new BorderLayout()));
+	    loginBox.add(new DIV(new BorderLayout()));
 	    loginBox.add(usrPanel);
 	    loginBox.add(passPanel);
+	    //one dummy row to make space
+	    loginBox.add(new DIV(new BorderLayout()));
+	    loginBox.add(b1);
 	    
-	     JButton b1=new BTN("LOGIN"); 
-	     b1.setMaximumSize(new Dimension(100,50));       
-	     loginBox.add(b1);
-	     conBody.add(loginBox);
-		 setMainBody();
+	    conBody.add(loginBox);
+		setMainBody();
 	}
 }
 
