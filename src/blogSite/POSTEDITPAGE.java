@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,68 +20,48 @@ import components.BTN;
 import components.mainFrame;
 import components.postBox;
 
-public class POSTEDITPAGE extends mainFrame implements ActionListener {
-	JPanel catPanel,pstPanel,ttlpanel; 
-	JButton edit,dlt;
-	JLabel catgry,post,ttle;  
-	JTextField cattxt,ttl;
-	JTextArea posttxt;
-	public String pTitle,pid;
-	public POSTEDITPAGE() {
-		// TODO Auto-generated constructor stub
-		setTitle("Edit Your Post");
-		setMenuBar();
-		
-		conBody = new JPanel();
-		JPanel createpost = new JPanel(); 
-		createpost.setPreferredSize(new Dimension(620,590));
-		
-		catPanel = new postnPanel(27);
-		ttlpanel = new postnPanel(27);
-		pstPanel = new postnPanel(50);
-		pstPanel.setPreferredSize(new Dimension(600,450));
-		
-		catgry=new JLabel("Category");  
-		catgry.setBackground(null);
-		catgry.setFont(new Font("",Font.PLAIN, 14));
-		cattxt=new JTextField(40);
-		ttle=new JLabel("Title");  
-		ttle.setBackground(null);
-		ttle.setFont(new Font("",Font.PLAIN, 14));
-		ttl=new JTextField(40);
-		post=new JLabel("Modify Your Post");  
-		post.setBackground(null);
-		post.setFont(new Font("",Font.PLAIN, 14));
-		posttxt=new JTextArea(); 
-		posttxt.setLineWrap(true);
-		posttxt.setFont(new Font("",Font.PLAIN, 14));
-		posttxt.setWrapStyleWord(true);
-		posttxt.setForeground(new Color(100,100,100));
-		catPanel.add(catgry,BorderLayout.WEST);
-		catPanel.add(cattxt,BorderLayout.EAST);
-		ttlpanel.add(ttle,BorderLayout.WEST);
-		ttlpanel.add(ttl,BorderLayout.EAST);
-		pstPanel.add(post,BorderLayout.NORTH);
-		pstPanel.add(posttxt,BorderLayout.CENTER);
-		createpost.add(catPanel);
-		createpost.add(ttlpanel);
-		createpost.add(pstPanel);
-		edit=new BTN("EDIT"); 
-	    edit.setMaximumSize(new Dimension(100,50));
-	    dlt=new BTN("DELETE"); 
-	    dlt.setMaximumSize(new Dimension(100,50));
-		createpost.add(edit);
-		createpost.add(dlt);
-		conBody.add(createpost);
-		
-		setMainBody();
+public class POSTEDITPAGE extends CREATEPOST implements ActionListener {
+	int postId;
+	public POSTEDITPAGE(int postId) {
+		this.setTitle("Edit your Post");
+		this.postId = postId;
+		init();
+		setTexts(postId);
 	}
-	public void loadData(postBox post) {
-		
+
+	public void setTexts(int postId) {
+		ResultSet rSet = null;
+		try {
+			rSet = sysInfo.dt.getData("select post_id,title,username,post_log.time,post,category from posts, post_log, user_table WHERE posts.id = post_log.post_id and user_table.id=post_log.user_id AND post_id ="+postId);
+			while(rSet.next()) {
+				posttxt.setText(rSet.getString("post"));
+				cattxt.setText(rSet.getString("category"));
+				ttl.setText(rSet.getString("title"));
+				pstTime = rSet.getString("time");
+			}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	public void createpost() {
+		String title,post,category;
+		title= ttl.getText();
+		post = posttxt.getText();
+		category = cattxt.getText();
+		if(sysInfo.dt.sendData("Update posts set title='"+title+"',post='"+post+"',category='"+category+"' where id="+postId)) {
+			this.setVisible(false);
+			sysInfo.logged=true;
+			new PROFILEPAGE(sysInfo.userName).setVisible(true);
+		}
+			
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==pst) {
+			createpost();
+		}
 	}
 }

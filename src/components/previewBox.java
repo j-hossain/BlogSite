@@ -17,7 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import blogSite.CREATEPOST;
 import blogSite.HOMEPAGE;
+import blogSite.POSTEDITPAGE;
 import blogSite.POSTPAGE;
 
 public class previewBox extends JPanel implements ActionListener {
@@ -31,7 +33,7 @@ public class previewBox extends JPanel implements ActionListener {
 	
 	public JPanel topPanel,top1Panel,midPanel,bottomPanel;
 	
-	public previewBox() {
+	public previewBox(){
 		
 		//as the side panels are given 216 width each, then what left is 648 from 1080, so 620 is for the box and rest is the padding
 		//There will be 3 preview boxes in a page, each of width 180, and 30 for padding, total 630
@@ -91,8 +93,14 @@ public class previewBox extends JPanel implements ActionListener {
 		if(e.getSource()==postbtn) {
 			loadpostPage();
 		}
-		
+		else if(e.getSource()==edtBtn) {
+			loadPostEditPage();
+		}
+		else if(e.getSource()==dltBtn) {
+			deletePost();
+		}
 	}
+	
 	private void loadpostPage() {
 		// getting the current active window
 		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
@@ -107,6 +115,17 @@ public class previewBox extends JPanel implements ActionListener {
 		postPreview.setText(pText);
 		postCategory.setText(pCategory);
 	}
+
+	public void loadPostEditPage() {
+		// getting the current active window
+		Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
+		activeWindow.setVisible(false);
+		new POSTEDITPAGE(pId).setVisible(true);
+	}
+	
+	public void deletePost() {
+		
+	}
 	
 	//this is for profile page only
 	public void setModBtns() {
@@ -118,6 +137,8 @@ public class previewBox extends JPanel implements ActionListener {
 		dltBtn = new BTN("Delete");
 		edtBtn.setMargin(new Insets(0,5,0,5));
 		dltBtn.setMargin(new Insets(0,5,0,5));
+		edtBtn.addActionListener(this);
+		dltBtn.addActionListener(this);
 		top1Panel.add(edtBtn);
 		top1Panel.add(dltBtn);
 		this.top1Panel.setPreferredSize(new Dimension(600,30));

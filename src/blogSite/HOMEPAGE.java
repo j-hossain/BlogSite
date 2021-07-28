@@ -4,12 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class HOMEPAGE extends mainFrame {
 	public int postCount;
 	public JPanel prevewBoxContainer;
 	public previewBox[] pBoxes;
 	public HOMEPAGE() {
+		
 		setTitle("Home page");//setting the title
 		setMenuBar();//this adds a menu bar to the page
 		conBody = new JPanel();//conBody is declare in the mainFrame class and added in main body class

@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.*;
 
@@ -17,8 +20,13 @@ public class CREATEPOST extends mainFrame implements ActionListener   {
 	JLabel catgry,post,ttle;  
 	JTextField cattxt,ttl;
 	JTextArea posttxt;
+	public String pstTime,pstAuthorId;
 	public CREATEPOST() {
-		this.setTitle("CREATEPOST page");
+		this.setTitle("Create a new Post");
+		init();
+	}
+	
+	public void init() {
 		setMenuBar();
 		conBody = new JPanel();
 		JPanel createpost = new JPanel(); 
@@ -61,31 +69,51 @@ public class CREATEPOST extends mainFrame implements ActionListener   {
 		conBody.add(createpost);
 		setMainBody();
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==pst) {
-			String title,post,category;
-			title= ttl.getText();
-			post = posttxt.getText();
-			category = cattxt.getText();
-			//if(sysInfo.dt.getCount("SELECT * FROM post_log,posts,user_table WHERE posts.id = post_log.post_id AND user_table.id=post_log.user_id")) {
-					if(createpost(title,post,category)) {
-						this.setVisible(false);
-						sysInfo.logged=true;
-						new HOMEPAGE().setVisible(true);
-					}
-					
-			//}
-				
-			}
-			
+			createpost();
+		}
 		
 	}
 	
-	public boolean createpost(String title, String post, String category) {
-		return sysInfo.dt.sendData("INSERT INTO posts VALUES(null,'"+title+"','"+post+"','"+category+"')");
+	public void createpost() {
+		String title,post,category,time,authorName;
+		int authorId,postId;
+		title= ttl.getText();
+		post = posttxt.getText();
+		category = cattxt.getText();
+		if(sysInfo.dt.sendData("INSERT INTO posts VALUES(null,'"+title+"','"+post+"','"+category+"',NULL)")) {
+			postId = sysInfo.dt.getLastId();
+			authorId = getAuthorId();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+			LocalDateTime now = LocalDateTime.now();  
+			time = dtf.format(now) ;
+			if(sysInfo.dt.sendData("INSERT INTO post_log VALUES("+authorId+","+postId+",'"+time+"')")) {
+				this.setVisible(false);
+				sysInfo.logged=true;
+				new PROFILEPAGE(sysInfo.userName).setVisible(true);
+			}
+		}
+			
+	}
+	
+	public int getAuthorId() {
+		int id = 0;
+		ResultSet rSet = null;
+		try {
+			rSet = sysInfo.dt.getData("SELECT id FROM user_table WHERE username = '"+sysInfo.userName+"'");
+			while(rSet.next()) {
+				id = rSet.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return id;
 	}
 
 }
@@ -97,3 +125,5 @@ class postnPanel extends JPanel{
 	}
 	
 }
+
+

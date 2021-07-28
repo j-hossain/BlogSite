@@ -55,6 +55,21 @@ public class dataCon {
 		}
 		return size;
 	}
+	public int getLastId() {
+		
+		//this method is used to get the total row count of any table
+		int id=0;
+		try {
+			ResultSet rs = getData("select last_insert_id()");
+			rs.next();		
+			id = rs.getInt(1);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return id;
+	}
 	public boolean sendData(String cmd) {
 		try {
 			Statement stt = dtbs.createStatement();
