@@ -3,6 +3,7 @@ package components;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +21,7 @@ public class PAGECONTROL extends JPanel implements ActionListener{
 	public int pgCnt = 1;
 	public int mxPg;
 	public int postCount;
-	public JPanel prevewBoxContainer;
+	public JPanel prevewBoxContainer,nxtPanel,prvPanel;
 	public previewBox[] pBoxes;
 	
 	public PAGECONTROL(int sz, JPanel container, previewBox[] elem) {
@@ -29,29 +30,54 @@ public class PAGECONTROL extends JPanel implements ActionListener{
 		prevewBoxContainer = container;
 		pBoxes = elem;
 		
+		this.setBackground(new Color(150,0,250));
+		this.setLayout(new FlowLayout(FlowLayout.CENTER,1,2));
+		
 		//maximum possible page number
 		mxPg = postCount/4;
 		if(mxPg*4!=postCount)mxPg++;
 		
 		//setting this panel
-		setLayout(new BorderLayout(5,5));
-		setPreferredSize(new Dimension(150,26));
+		setPreferredSize(new Dimension(150,30));
 		
 		//creating the button icons
 		ImageIcon nxtIcn = createImageIcon("images/nxtIcon3.png");
 		ImageIcon prvIcn = createImageIcon("images/prvIcon3.png");
 		
 		//creating the buttons
-		nxtBtn = new JButton(nxtIcn);
-		prvBtn = new JButton(prvIcn);
+		nxtBtn = new JButton(">");
+		prvBtn = new JButton("<");
+		nxtBtn.setBackground(null);
+		prvBtn.setBackground(null);
+		nxtBtn.setBorder(null);
+		prvBtn.setBorder(null);
+		nxtBtn.setFont(new Font("",Font.BOLD, 24));
+		prvBtn.setFont(new Font("",Font.BOLD, 24));
+		nxtBtn.setForeground(Color.white);
+		prvBtn.setForeground(Color.white);
 		//creating the page label
 		pgNum = new JLabel();
 		pgNum.setHorizontalAlignment(SwingConstants.CENTER);
 		pgNum.setFont(new Font("",Font.PLAIN,20));
+		pgNum.setForeground(Color.white);
 		
 		//adding action listener
 		nxtBtn.addActionListener(this);
 		prvBtn.addActionListener(this);
+		
+		nxtPanel = new JPanel();
+		prvPanel = new JPanel();
+		nxtPanel.setPreferredSize(new Dimension(50,25));
+		prvPanel.setPreferredSize(new Dimension(50,25));
+		nxtPanel.setBackground(null);
+		prvPanel.setBackground(null);
+		nxtPanel.setLayout(new BorderLayout());
+		prvPanel.setLayout(new BorderLayout());
+		
+		this.add(prvPanel);
+		this.add(pgNum);
+		this.add(nxtPanel);
+		
 		
 		loadPageControl();
 	}
@@ -103,13 +129,13 @@ public class PAGECONTROL extends JPanel implements ActionListener{
 	
 	public void loadPageControl() {
 		this.setVisible(false);
-		this.removeAll();
-		this.add(pgNum,BorderLayout.CENTER);
+		nxtPanel.removeAll();
+		prvPanel.removeAll();
 		pgNum.setText(Integer.toString(pgCnt));
 		if(pgCnt>1)
-				this.add(prvBtn,BorderLayout.WEST);
+				prvPanel.add(prvBtn,BorderLayout.WEST);
 		if(pgCnt<mxPg)
-			this.add(nxtBtn,BorderLayout.EAST);
+			nxtPanel.add(nxtBtn,BorderLayout.EAST);
 		this.setVisible(true);
 	}
 }

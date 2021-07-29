@@ -1,6 +1,7 @@
 package components;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.ResultSet;
 
@@ -21,6 +22,7 @@ public class mainFrame extends JFrame{
 		this.setResizable(false);
 		//setting the close operation
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.setBackground(Color.white);
 		
 	}
 	
@@ -38,6 +40,7 @@ public class mainFrame extends JFrame{
 
 
 	public  previewBox[] setPosts(int pCnt, String cmd) {
+		System.out.println(pCnt);
 		previewBox[] pbBoxs = new previewBox[pCnt];
 		ResultSet rSet;
 		int cnt=0;

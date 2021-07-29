@@ -18,6 +18,7 @@ public class BTN extends JButton{
 	private void createButton(String text) {
 //		this.setSize(100,50); //if i do not set the size, its going to be dynamic, according to the length of the text
 		this.setBackground(new Color(150,0,250));
+//		this.setBackground(null);
 		this.setText(text);
 		this.setForeground(Color.white);
 		this.setBorder(null);
