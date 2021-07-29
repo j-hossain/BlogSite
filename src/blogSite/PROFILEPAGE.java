@@ -27,8 +27,6 @@ public class PROFILEPAGE extends mainFrame implements ActionListener{
 		prevewBoxContainer.setLayout(new GridLayout(4,1,5,5));
 		postCount = sysInfo.dt.getCount("posts, post_log, user_table WHERE posts.id = post_log.post_id and user_table.id=post_log.user_id AND user_table.username='"+author+"'");
 		pBoxes = setPosts(postCount,"select post_id,title,full_name,post_log.time,post,category from posts, post_log, user_table WHERE posts.id = post_log.post_id and user_table.id=post_log.user_id AND user_table.username='"+author+"'");
-		if(sysInfo.userName==author)
-			setModifyBtns(pBoxes);
 		PAGECONTROL pCon = new PAGECONTROL(postCount, prevewBoxContainer, pBoxes);
 		pCon.loadPosts(1);
 		conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam
@@ -38,6 +36,8 @@ public class PROFILEPAGE extends mainFrame implements ActionListener{
 		bottomPanel.setLayout(new BorderLayout());
 		newBtn = new BTN("New Post");
 		newBtn.addActionListener(this);
+		if(author.equalsIgnoreCase(sysInfo.userName))
+			setModifyBtns(pBoxes);
 		bottomPanel.add(pCon,BorderLayout.EAST);
 		conBody.add(bottomPanel);
 		setMainBody();
