@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 
 import components.*;
 
@@ -41,10 +44,12 @@ public class CREATEPOST extends mainFrame implements ActionListener   {
 		catgry.setBackground(null);
 		catgry.setFont(new Font("",Font.PLAIN, 14));
 		cattxt=new JTextField(40);
+		cattxt.setBorder(new CompoundBorder(new EtchedBorder(), new EmptyBorder(5,5,5,5)));
 		ttle=new JLabel("Title");  
 		ttle.setBackground(null);
 		ttle.setFont(new Font("",Font.PLAIN, 14));
 		ttl=new JTextField(40);
+		ttl.setBorder(new CompoundBorder(new EtchedBorder(), new EmptyBorder(5,5,5,5)));
 		post=new JLabel("What's on your mind?");  
 		post.setBackground(null);
 		post.setFont(new Font("",Font.PLAIN, 14));
@@ -53,6 +58,7 @@ public class CREATEPOST extends mainFrame implements ActionListener   {
 		posttxt.setFont(new Font("",Font.PLAIN, 14));
 		posttxt.setWrapStyleWord(true);
 		posttxt.setForeground(new Color(100,100,100));
+		posttxt.setBorder(new CompoundBorder(new EtchedBorder(), new EmptyBorder(5,5,5,5)));
 		catPanel.add(catgry,BorderLayout.WEST);
 		catPanel.add(cattxt,BorderLayout.EAST);
 		ttlpanel.add(ttle,BorderLayout.WEST);
