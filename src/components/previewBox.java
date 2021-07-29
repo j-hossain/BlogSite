@@ -10,6 +10,9 @@ import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Comparator;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -24,7 +27,7 @@ import blogSite.POSTPAGE;
 import blogSite.PROFILEPAGE;
 import blogSite.sysInfo;
 
-public class previewBox extends JPanel implements ActionListener {
+public class previewBox extends JPanel implements ActionListener{
 	public JLabel postTitle,postDate,postCategory,postAuthor;
 	public JTextArea postPreview;
 	public JButton postbtn,edtBtn,dltBtn;
@@ -156,6 +159,29 @@ public class previewBox extends JPanel implements ActionListener {
 		this.top1Panel.setPreferredSize(new Dimension(600,30));
 		this.midPanel.setPreferredSize(new Dimension(600,40));
 	}
+}
+
+class sortByDate implements Comparator<previewBox>{
+
+	@Override
+	public int compare(previewBox o1, previewBox o2) {
+		try {
+			Date d1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(o1.pDate);
+			Date d2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(o2.pDate);
+			if(d1.getTime()<d2.getTime()) {
+				return 1;
+			}
+			else {
+				return -1;
+			}
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 }
 
 class posPanel extends JPanel{

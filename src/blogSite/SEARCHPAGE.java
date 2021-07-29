@@ -20,7 +20,7 @@ public class SEARCHPAGE extends mainFrame {
 		prevewBoxContainer.setPreferredSize(new Dimension(620,580)); 
 		prevewBoxContainer.setLayout(new GridLayout(4,1,5,5));
 		postCount = sysInfo.dt.getCount("posts, post_log, user_table WHERE posts.id = post_log.post_id and user_table.id=post_log.user_id AND (title LIKE '%"+keyWord+"%' OR post LIKE '%"+keyWord+"%' OR category LIKE '%"+keyWord+"%')");
-		pBoxes = setPosts(postCount,"select post_id,title,full_name,post_log.time,post,category from posts, post_log, user_table WHERE posts.id = post_log.post_id and user_table.id=post_log.user_id AND (title LIKE '%"+keyWord+"%' OR post LIKE '%"+keyWord+"%' OR category LIKE '%"+keyWord+"%')");
+		pBoxes = setPosts(postCount,"select post_greid,title,full_name,post_log.time,post,category from posts, post_log, user_table WHERE posts.id = post_log.post_id and user_table.id=post_log.user_id AND (title LIKE '%"+keyWord+"%' OR post LIKE '%"+keyWord+"%' OR category LIKE '%"+keyWord+"%')");
 		PAGECONTROL pCon = new PAGECONTROL(postCount, prevewBoxContainer, pBoxes);
 		pCon.loadPosts(1);
 		conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam

@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.ResultSet;
-
+import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -40,7 +40,6 @@ public class mainFrame extends JFrame{
 
 
 	public  previewBox[] setPosts(int pCnt, String cmd) {
-		System.out.println(pCnt);
 		previewBox[] pbBoxs = new previewBox[pCnt];
 		ResultSet rSet;
 		int cnt=0;
@@ -62,6 +61,7 @@ public class mainFrame extends JFrame{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		Arrays.sort(pbBoxs,new sortByDate());
 		return pbBoxs;
 	}
 
