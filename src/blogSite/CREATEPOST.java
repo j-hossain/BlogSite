@@ -59,15 +59,19 @@ public class CREATEPOST extends mainFrame implements ActionListener   {
 		posttxt.setWrapStyleWord(true);
 		posttxt.setForeground(new Color(100,100,100));
 		posttxt.setBorder(new CompoundBorder(new EtchedBorder(), new EmptyBorder(5,5,5,5)));
+		
+		JScrollPane scrollPane = new JScrollPane(posttxt);
 		catPanel.add(catgry,BorderLayout.WEST);
 		catPanel.add(cattxt,BorderLayout.EAST);
 		ttlpanel.add(ttle,BorderLayout.WEST);
 		ttlpanel.add(ttl,BorderLayout.EAST);
 		pstPanel.add(post,BorderLayout.NORTH);
-		pstPanel.add(posttxt,BorderLayout.CENTER);
+		pstPanel.add(scrollPane,BorderLayout.CENTER);
 		pst=new BTN("POST"); 
 	    pst.setMaximumSize(new Dimension(100,50));
 	    pst.addActionListener(this);
+	    
+	    
 		createpost.add(catPanel);
 		createpost.add(ttlpanel);
 		createpost.add(pstPanel);

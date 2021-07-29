@@ -41,6 +41,7 @@ public class LOGINPAGE extends mainFrame implements ActionListener{
 		warning = new JLabel();
 		warning.setForeground(Color.red);
 		warning.setFont(new Font("",Font.ITALIC,10));
+		warningPanel.setLayout(new FlowLayout());
 	    usrNmeLbl=new JLabel("Username");
 	    passLbl=new JLabel("Password");  
 	    usrNmeInp=new JTextField(20);   
@@ -77,7 +78,6 @@ public class LOGINPAGE extends mainFrame implements ActionListener{
 				getSignedIn(usrName);
 			}
 			else {
-				System.out.println(pass);
 				showWarning("Wrong password or Username");
 			}
 		}
@@ -90,6 +90,7 @@ public class LOGINPAGE extends mainFrame implements ActionListener{
 		new HOMEPAGE().setVisible(true);
 	}
 	public void showWarning(String msg) {
+		warningPanel.setLayout(new FlowLayout());
 		warningPanel.setVisible(false);
 		warning.setText(msg);
 		warningPanel.add(warning);

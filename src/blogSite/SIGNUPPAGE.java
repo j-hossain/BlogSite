@@ -38,6 +38,7 @@ public class SIGNUPPAGE extends mainFrame implements ActionListener{
 		warning = new JLabel();
 		warning.setForeground(Color.red);
 		warning.setFont(new Font("",Font.ITALIC,10));
+		warningPanel.setLayout(new FlowLayout());
 	    usrNmeLbl=new JLabel("Username");  
 	    flNmeLbl=new JLabel("Full Name");  
 	    emlLbl=new JLabel("Email");  
