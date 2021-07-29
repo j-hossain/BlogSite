@@ -1,5 +1,7 @@
 package blogSite;
 
+import java.awt.Color;
+
 import components.dataCon;
 
 public  class sysInfo {
@@ -10,6 +12,11 @@ public  class sysInfo {
 	public static boolean logged = false;
 	public static String userName = "";
 	public static dataCon dt = null;
+	public static Color darkCol = new Color(150,0,250);
+//	new Color(150,0,250) violet
+//	new Color(235, 204, 255) violet light
+	public static Color lightCol = new Color(245, 214, 255);
+	
 	//jokhon sign in korbe tokhon eta true kore dite hobe
 	//r j login korbe tar username ta rekhe dite hobe
 	//jate jekono class thekei log in information gula paoa jay

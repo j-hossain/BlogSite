@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import blogSite.sysInfo;
+
 public class PAGECONTROL extends JPanel implements ActionListener{
 	public JButton nxtBtn;
 	public JButton prvBtn;
@@ -30,7 +32,7 @@ public class PAGECONTROL extends JPanel implements ActionListener{
 		prevewBoxContainer = container;
 		pBoxes = elem;
 		
-		this.setBackground(new Color(150,0,250));
+		this.setBackground(sysInfo.darkCol);
 		this.setLayout(new FlowLayout(FlowLayout.CENTER,1,2));
 		
 		//maximum possible page number
