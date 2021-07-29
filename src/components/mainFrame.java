@@ -13,6 +13,7 @@ import blogSite.*;
 public class mainFrame extends JFrame{
 	public mainBody mBody;//panel that contains the side panels and also the content panel in the middle
 	public JPanel conBody;//panel that contains the main contents of the current page
+	menubar menu;
 	public mainFrame() {
 		//specifying the width and height
 		this.setSize(new Dimension(sysInfo.winWidth,sysInfo.winHeight));
@@ -28,7 +29,13 @@ public class mainFrame extends JFrame{
 	
 	public void setMenuBar() {
 		//adding the menuPanel here
-		JPanel menu = new menubar();
+		menu = new menubar();
+		this.add(menu,BorderLayout.NORTH);
+	}
+	public void setMenuBar(String seacrhKey) {
+		//adding the menuPanel here
+		menu = new menubar();
+		menu.srchTxt.setText(seacrhKey);
 		this.add(menu,BorderLayout.NORTH);
 	}
 	

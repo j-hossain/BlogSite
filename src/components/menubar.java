@@ -26,7 +26,7 @@ public class menubar extends JPanel implements ActionListener {
 	JButton sgnOutBtn;
 	JButton homeBtn;
 	JButton srchBtn;
-	JTextField srchTxt;
+	public JTextField srchTxt;
 	public menubar(){
 		this.setLayout(new BorderLayout(0,0));
 		this.setBackground(new Color(150,0,250));
