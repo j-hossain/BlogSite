@@ -91,8 +91,8 @@ public class SIGNUPPAGE extends mainFrame implements ActionListener{
 			userName= usrNmeInp.getText();
 			fullname = flNmeInp.getText();
 			email = emlInp.getText();
-			pass = passInp.getText();
-			conPass = conPassInp.getText();
+			pass = new String(passInp.getPassword()) ;
+			conPass = new String(conPassInp.getPassword()) ;
 			if(sysInfo.dt.getCount("user_table WHERE username ='"+userName+"'")==0) {
 				if(pass.equalsIgnoreCase(conPass)) {
 					if(createAccount(userName,fullname,email,pass)) {

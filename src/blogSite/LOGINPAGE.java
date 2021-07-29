@@ -72,7 +72,7 @@ public class LOGINPAGE extends mainFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource()==sgnInBtn) {
 			String usrName = usrNmeInp.getText();
-			String pass = passInp.getText();
+			String pass = new String(passInp.getPassword());
 			if(sysInfo.dt.getCount("user_table WHERE username ='"+usrName+"' AND password='"+pass+"'")==1) {
 				getSignedIn(usrName);
 			}

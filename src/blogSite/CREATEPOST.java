@@ -83,9 +83,9 @@ public class CREATEPOST extends mainFrame implements ActionListener   {
 	public void createpost() {
 		String title,post,category,time,authorName;
 		int authorId,postId;
-		title= ttl.getText();
-		post = posttxt.getText();
-		category = cattxt.getText();
+		title= sysInfo.dt.rmSpecialChar(ttl.getText());
+		post = sysInfo.dt.rmSpecialChar(posttxt.getText());
+		category = sysInfo.dt.rmSpecialChar(cattxt.getText());
 		if(sysInfo.dt.sendData("INSERT INTO posts VALUES(null,'"+title+"','"+post+"','"+category+"',NULL)")) {
 			postId = sysInfo.dt.getLastId();
 			authorId = getAuthorId();

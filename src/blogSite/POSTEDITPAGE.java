@@ -47,9 +47,9 @@ public class POSTEDITPAGE extends CREATEPOST implements ActionListener {
 	}
 	public void createpost() {
 		String title,post,category;
-		title= ttl.getText();
-		post = posttxt.getText();
-		category = cattxt.getText();
+		title= sysInfo.dt.rmSpecialChar(ttl.getText());
+		post = sysInfo.dt.rmSpecialChar(posttxt.getText());
+		category = sysInfo.dt.rmSpecialChar(cattxt.getText());
 		if(sysInfo.dt.sendData("Update posts set title='"+title+"',post='"+post+"',category='"+category+"' where id="+postId)) {
 			this.setVisible(false);
 			sysInfo.logged=true;

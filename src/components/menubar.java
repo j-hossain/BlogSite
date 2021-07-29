@@ -29,7 +29,7 @@ public class menubar extends JPanel implements ActionListener {
 	JTextField srchTxt;
 	public menubar(){
 		this.setLayout(new BorderLayout(0,0));
-		this.setBackground(Color.black);
+		this.setBackground(new Color(150,0,250));
 		
 		//sign in, sign out button panel
 		accountBtns = new DIV(new FlowLayout(FlowLayout.CENTER,20,15));

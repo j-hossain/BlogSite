@@ -18,6 +18,8 @@ import blogSite.sysInfo;
 public class postBox extends previewBox {
 	public postBox() {
 		// TODO Auto-generated constructor stub
+		this.setBackground(null);
+		postTitle.setFont(new Font("",Font.BOLD,20));
 		this.midPanel.setPreferredSize(new Dimension(600,520));
 		this.bottomPanel.removeAll();
 		this.remove(top1Panel);

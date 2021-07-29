@@ -82,6 +82,21 @@ public class dataCon {
 			return false;
 		}
 	}
+	
+	public String rmSpecialChar(String inp) {
+		char[] sett = new char[inp.length()*2];
+		int stCnt=0;
+		for(int i=0;i<inp.length();i++) {
+			char now = inp.charAt(i);
+			if(now=='\'') {
+				sett[stCnt++]=now;
+			}
+			sett[stCnt++]=now;
+		}
+		String processed = new String(sett);
+		processed = processed.substring(0,stCnt);
+		return processed;
+	}
 }
 
 

@@ -40,7 +40,7 @@ public class previewBox extends JPanel implements ActionListener {
 		//as the side panels are given 216 width each, then what left is 648 from 1080, so 620 is for the box and rest is the padding
 		//There will be 3 preview boxes in a page, each of width 180, and 30 for padding, total 630
 		this.setSize(new Dimension(620, 180));
-		this.setBackground(new Color(230, 230, 230));
+		this.setBackground(new Color(235, 204, 255));
 //		ei panel gular kichu similar propertie thakbe, tai ekta clas banay,
 //		egulake oi class er object banay disi, jate eki line bar bar likhte na hoy
 //		this is object oriented programming i guess :P
