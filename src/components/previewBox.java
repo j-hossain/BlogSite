@@ -3,6 +3,7 @@ package components;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -10,10 +11,14 @@ import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.ResultSet;
 import java.util.Comparator;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+import javax.swing.ActionMap;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -79,6 +84,41 @@ public class previewBox extends JPanel implements ActionListener{
 		postAuthor.setFont(new Font("",Font.PLAIN,12));
 		postAuthor.setForeground(new Color(100,100,100));
 		postCategory.setFont(new Font("",Font.PLAIN,12));
+		
+		postAuthor.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				Window activeWindow = javax.swing.FocusManager.getCurrentManager().getActiveWindow();
+				activeWindow.setVisible(false);
+				new PROFILEPAGE(getUserName()).setVisible(true);
+			}
+		});
 		
 		topPanel.add(postTitle,BorderLayout.WEST);
 		topPanel.add(postDate,BorderLayout.EAST);
@@ -159,6 +199,20 @@ public class previewBox extends JPanel implements ActionListener{
 		this.top1Panel.setPreferredSize(new Dimension(600,30));
 		this.midPanel.setPreferredSize(new Dimension(600,40));
 	}
+
+	public String getUserName() {
+		ResultSet rSet = null;
+		String userName = sysInfo.userName;
+		try {
+			rSet = sysInfo.dt.getData("Select * from post_log, user_table where user_table.id=post_log.user_id and post_id="+pId);
+			while(rSet.next()) {
+				userName = rSet.getString("username");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return userName;
+	}
 }
 
 class sortByDate implements Comparator<previewBox>{
@@ -181,6 +235,7 @@ class sortByDate implements Comparator<previewBox>{
 		}
 		return 0;
 	}
+	
 	
 }
 

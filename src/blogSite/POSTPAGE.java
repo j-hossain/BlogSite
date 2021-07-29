@@ -32,6 +32,7 @@ public class POSTPAGE extends mainFrame {
 			rSet = sysInfo.dt.getData("SELECT post_id,title,full_name,post_log.time,post,category FROM posts, post_log, user_table WHERE posts.id = post_log.post_id AND user_table.id=post_log.user_id AND post_id="+this.pId);
 			while(rSet.next()) {
 				this.pId = rSet.getInt("post_id");
+				post.pId=this.pId;
 				post.pTitle = rSet.getString("title");
 				post.pDate = rSet.getString("time");
 				post.pAuthor = rSet.getString("full_name");

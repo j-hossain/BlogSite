@@ -15,7 +15,7 @@ import components.*;
 
 public class PROFILEPAGE extends mainFrame implements ActionListener{
 	public int postCount;
-	public JPanel prevewBoxContainer;
+	public JPanel prevewBoxContainer,bottomPanel;
 	public previewBox[] pBoxes;
 	public JButton newBtn;
 	public PROFILEPAGE(String author) {
@@ -33,18 +33,18 @@ public class PROFILEPAGE extends mainFrame implements ActionListener{
 		pCon.loadPosts(1);
 		conBody.add(prevewBoxContainer);//pura container ta content body panel er bhitre die dilam
 		//creating a bottom panel that will hold page controllers and a new post button
-		JPanel bottomPanel = new JPanel();
+		bottomPanel = new JPanel();
 		bottomPanel.setPreferredSize(new Dimension(620,30));
 		bottomPanel.setLayout(new BorderLayout());
 		newBtn = new BTN("New Post");
 		newBtn.addActionListener(this);
-		bottomPanel.add(newBtn,BorderLayout.WEST);
 		bottomPanel.add(pCon,BorderLayout.EAST);
 		conBody.add(bottomPanel);
 		setMainBody();
 	}
 	
 	public void setModifyBtns(previewBox[] pBoxs) {
+		bottomPanel.add(newBtn,BorderLayout.WEST);
 		for(int i=0;i<pBoxs.length;i++) {
 			pBoxs[i].setModBtns();
 		}
